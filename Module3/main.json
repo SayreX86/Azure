@@ -8,7 +8,7 @@
         "SA-AccountName":{"defaultValue": "samoeunikalnoeimyavmire",
             "type": "string"       
         },
-        "VNET-Name":{"defaultValue": "VNET-Name",
+        "VNET-Name":{"defaultValue": "VNET",
             "type": "string"       
         },
         "VNET-IP":{"defaultValue": "10.0.0.0/16",
