@@ -1,0 +1,48 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "AccountType":{"defaultValue": "Standard_LRS",
+            "type": "string"
+        },
+        "AccountName":{"defaultValue": "samoeunikalnoenazvaniesavmire",
+            "type": "string"       
+        }
+     //vnet parameters
+    },
+    "resources": [
+        {
+            "apiVersion": "2017-05-10",
+            "name": "linkedTemplate",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri":"https://raw.githubusercontent.com/SayreX86/Azure/master/sa.json",
+                    "contentVersion":"1.0.0.0"
+                },
+                "parameters": {
+                    "storageAccountName":{"value": "[parameters('AccountName')]"},
+                    "storageAccountType":{"value": "[parameters('AccountType')]"}
+                    
+                }
+            }
+        },
+        {
+            "apiVersion": "2017-05-10",
+            "name": "linkedTemplate",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri":"https://raw.githubusercontent.com/SayreX86/Azure/master/vnet.json",
+                    "contentVersion":"1.0.0.0"
+                },
+                "parameters": {
+                    "storageAccountName":{"value": "[parameters('AccountName')]"},
+                    "storageAccountType":{"value": "[parameters('AccountType')]"}
+                }
+            }
+        }
+    ]
+}
