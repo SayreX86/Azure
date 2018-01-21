@@ -8,7 +8,6 @@
         "AccountName":{"defaultValue": "samoeunikalnoenazvaniesavmire",
             "type": "string"       
         }
-     //vnet parameters
     },
     "resources": [
         {
