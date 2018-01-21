@@ -18,7 +18,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri":"https://raw.githubusercontent.com/SayreX86/Azure/master/sa.json",
+                    "uri":"https://raw.githubusercontent.com/SayreX86/Azure/master/Module3/sa.json",
                     "contentVersion":"1.0.0.0"
                 },
                 "parameters": {
@@ -35,7 +35,7 @@
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri":"https://raw.githubusercontent.com/SayreX86/Azure/master/vnet.json",
+                    "uri":"https://raw.githubusercontent.com/SayreX86/Azure/master/Module3/vnet.json",
                     "contentVersion":"1.0.0.0"
                 },
                 "parameters": {
