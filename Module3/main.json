@@ -32,6 +32,7 @@
             "apiVersion": "2017-05-10",
             "name": "SA-Template",
             "type": "Microsoft.Resources/deployments",
+            "comments": "This is link to Storage Account template",
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
@@ -49,6 +50,7 @@
             "apiVersion": "2017-05-10",
             "name": "Vnet-Template",
             "type": "Microsoft.Resources/deployments",
+            "comments": "This is link to VNET template with two subnets",
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
