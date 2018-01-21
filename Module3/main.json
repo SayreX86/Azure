@@ -2,10 +2,28 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "AccountType":{"defaultValue": "Standard_LRS",
+        "SA-AccountType":{"defaultValue": "Standard_LRS",
             "type": "string"
         },
-        "AccountName":{"defaultValue": "samoeunikalnoenazvaniesavmire",
+        "SA-AccountName":{"defaultValue": "samoeunikalnoeimyavmire",
+            "type": "string"       
+        },
+        "VNET-Name":{"defaultValue": "VNET-Name",
+            "type": "string"       
+        },
+        "VNET-IP":{"defaultValue": "10.0.0.0/16",
+            "type": "string"       
+        },
+        "VNET-SN1-Name":{"defaultValue": "VNET-SN1",
+            "type": "string"       
+        },
+        "VNET-SN1-IP":{"defaultValue": "10.0.0.0/24",
+            "type": "string"       
+        },
+        "VNET-SN2-Name":{"defaultValue": "VNET-SN2",
+            "type": "string"       
+        },
+        "VNET-SN2-IP":{"defaultValue": "10.0.1.0/24",
             "type": "string"       
         }
     },
@@ -21,8 +39,8 @@
                     "contentVersion":"1.0.0.0"
                 },
                 "parameters": {
-                    "storageAccountName":{"value": "[parameters('AccountName')]"},
-                    "storageAccountType":{"value": "[parameters('AccountType')]"}
+                    "storageAccountName":{"value": "[parameters('SA-AccountName')]"},
+                    "storageAccountType":{"value": "[parameters('SA-AccountType')]"}
                     
                 }
             }
@@ -38,8 +56,12 @@
                     "contentVersion":"1.0.0.0"
                 },
                 "parameters": {
-                    "storageAccountName":{"value": "[parameters('AccountName')]"},
-                    "storageAccountType":{"value": "[parameters('AccountType')]"}
+                    "vnetName":{"value": "[parameters('VNET-Name')]"},
+                    "vnetAddressPrefix":{"value": "[parameters('VNET-IP')]"},
+                    "subnet1Name":{"value": "[parameters('VNET-SN1-Name')]"},
+                    "subnet1Prefix":{"value": "[parameters('VNET-SN1-IP')]"},
+                    "subnet2Name":{"value": "[parameters('VNET-SN2-Name')]"},
+                    "subnet2Prefix":{"value": "[parameters('VNET-SN2-IP')]"}
                 }
             }
         }
