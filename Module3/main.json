@@ -25,7 +25,29 @@
         },
         "VNET-SN2-IP":{"defaultValue": "10.0.1.0/24",
             "type": "string"       
+        },
+        "VM-Admin-Name":{"defaultValue": "Administrator-epta",
+            "type": "string"       
+        },
+        "VM-Admin-Password":{"defaultValue": "P@ssw0rd-epta",
+            "type": "securestring"       
+        },
+	    "Windows-Version":{"defaultValue": "2016-Datacenter",
+            "type": "string"       
+        },
+	    "DNS-Name":{"defaultValue": "samoeunikalnoeimyavm",
+            "type": "string"       
+        },
+        "VM-NIC-Name":{"defaultValue": "VM-NIC",
+            "type": "string"       
+        },
+        "VM-PIP-Name":{"defaultValue": "VM-PIP",
+            "type": "string"       
+        },
+        "VM-Name":{"defaultValue": "VM",
+            "type": "string"       
         }
+
     },
     "resources": [
         {
@@ -64,6 +86,33 @@
                     "subnet1Prefix":{"value": "[parameters('VNET-SN1-IP')]"},
                     "subnet2Name":{"value": "[parameters('VNET-SN2-Name')]"},
                     "subnet2Prefix":{"value": "[parameters('VNET-SN2-IP')]"}
+                }
+            }
+        },
+        {
+            "apiVersion": "2017-05-10",
+            "name": "VM-Template",
+            "type": "Microsoft.Resources/deployments",
+            "comments": "This is link to Storage Account template",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri":"https://raw.githubusercontent.com/SayreX86/Azure/master/Module3/vm.json",
+                    "contentVersion":"1.0.0.0"
+                },
+                "parameters": {
+                    "adminUsername":{"value": "[parameters('VM-Admin-Name')]"},
+                    "adminPassword":{"value": "[parameters('VM-Admin-Password')]"},
+		            "dnsLabelPrefix":{"value": "[parameters('Windows-Version')]"},
+                    "windowsOSVersion":{"value": "[parameters('DNS-Name')]"},
+                    "storageAccountName":{"value": "[parameters('SA-AccountName')]"},
+                    "nicName":{"value": "[parameters('VM-NIC-Name')]"},
+                    "publicIPAddressName":{"value": "[parameters('VM-PIP-Name')]"},
+                    "vmName":{"value": "[parameters('VM-Name')]"},
+                    "addressPrefix":{"value": "[parameters('VNET-IP')]"},
+                    "subnetName":{"value": "[parameters('VNET-SN1-Name')]"},
+                    "subnetPrefix":{"value": "[parameters('VNET-SN1-IP')]"},
+                    "virtualNetworkName":{"value": "[parameters('VNET-Name')]"}
                 }
             }
         }
