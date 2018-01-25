@@ -87,6 +87,7 @@
                     "subnet1Name":{"value": "[parameters('VNET-SN1-Name')]"},
                     "subnet1Prefix":{"value": "[parameters('VNET-SN1-IP')]"},
                     "subnet2Name":{"value": "[parameters('VNET-SN2-Name')]"},
+                    "nsgName":{"value": "[parameters('NSG-Name')]"},
                     "subnet2Prefix":{"value": "[parameters('VNET-SN2-IP')]"}
                 }
             }
@@ -114,7 +115,6 @@
                     "addressPrefix":{"value": "[parameters('VNET-IP')]"},
                     "subnetName":{"value": "[parameters('VNET-SN1-Name')]"},
                     "subnetPrefix":{"value": "[parameters('VNET-SN1-IP')]"},
-                    "nsgName":{"value": "[parameters('NSG-Name')]"},
                     "virtualNetworkName":{"value": "[parameters('VNET-Name')]"}
                 }
             }
