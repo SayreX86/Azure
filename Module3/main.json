@@ -32,7 +32,7 @@
         "VM-Admin-Password":{"defaultValue": "P@ssw0rd-epta",
             "type": "securestring"       
         },
-        "Windows-Version":{"defaultValue": "2012-R2-Datacenter",
+        "Windows-Version":{"defaultValue": "2016-Datacenter",
             "type": "string"       
         },
         "DNS-Name":{"defaultValue": "samoeunikalnoeimyavm",
@@ -92,7 +92,7 @@
             "apiVersion": "2017-05-10",
             "name": "VM-Template",
             "type": "Microsoft.Resources/deployments",
-            "comments": "This is link to Storage Account template",
+            "comments": "This is link to Virtual Machine template",
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {

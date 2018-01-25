@@ -22,7 +22,7 @@
       },
       "windowsOSVersion": {
         "type": "string",
-        "defaultValue": "2012-R2-Datacenter",
+        "defaultValue": "2016-Datacenter",
         "metadata": {
           "description": "The Windows version for the VM."
         }
@@ -90,6 +90,27 @@
           "dnsSettings": {
             "domainNameLabel": "[parameters('dnsLabelPrefix')]"
           }
+        }
+      },
+      {
+        "apiVersion": "2016-03-30",
+        "type": "Microsoft.Network/virtualNetworks",
+        "name": "[parameters('virtualNetworkName')]",
+        "location": "[resourceGroup().location]",
+        "properties": {
+          "addressSpace": {
+            "addressPrefixes": [
+              "[parameters('addressPrefix')]"
+            ]
+          },
+          "subnets": [
+            {
+              "name": "[parameters('subnetName')]",
+              "properties": {
+                "addressPrefix": "[parameters('subnetPrefix')]"
+              }
+            }
+          ]
         }
       },
       {
