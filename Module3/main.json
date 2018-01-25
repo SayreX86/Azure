@@ -32,7 +32,7 @@
         "VM-Admin-Password":{"defaultValue": "P@ssw0rd-epta",
             "type": "securestring"       
         },
-	    "Windows-Version":{"defaultValue": "2016-Datacenter",
+	    "Windows-Version":{"defaultValue": "2012-R2-Datacenter",
             "type": "string"       
         },
 	    "DNS-Name":{"defaultValue": "samoeunikalnoeimyavm",
@@ -47,7 +47,6 @@
         "VM-Name":{"defaultValue": "VM",
             "type": "string"       
         }
-
     },
     "resources": [
         {
