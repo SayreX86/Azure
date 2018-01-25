@@ -103,8 +103,8 @@
                 "parameters": {
                     "adminUsername":{"value": "[parameters('VM-Admin-Name')]"},
                     "adminPassword":{"value": "[parameters('VM-Admin-Password')]"},
-		            "dnsLabelPrefix":{"value": "[parameters('Windows-Version')]"},
-                    "windowsOSVersion":{"value": "[parameters('DNS-Name')]"},
+		            "dnsLabelPrefix":{"value": "[parameters('DNS-Name')]"},
+                    "windowsOSVersion":{"value": "[parameters('Windows-Version')]"},
                     "storageAccountName":{"value": "[parameters('SA-AccountName')]"},
                     "nicName":{"value": "[parameters('VM-NIC-Name')]"},
                     "publicIPAddressName":{"value": "[parameters('VM-PIP-Name')]"},
