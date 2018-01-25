@@ -76,6 +76,12 @@
         "metadata": {
           "description": ""
         }
+      },
+      "storageAccountName":{
+        "type": "string",
+        "metadata": {
+          "description": ""
+        }
       }
     },
     "variables": {
