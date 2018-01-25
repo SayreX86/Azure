@@ -5,7 +5,7 @@
         "nsgName":{
             "type": "string",
             "metadata": {
-              "description": ""
+              "description": "NSG for 8080 port access"
             }
           }
     },

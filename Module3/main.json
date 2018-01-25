@@ -121,7 +121,7 @@
         },
         {
             "apiVersion": "2017-05-10",
-            "name": "Vnet-Template",
+            "name": "NSG-Template",
             "type": "Microsoft.Resources/deployments",
             "comments": "This is link to NSG template",
             "properties": {
