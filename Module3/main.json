@@ -46,6 +46,9 @@
         },
         "VM-Name":{"defaultValue": "VM",
             "type": "string"       
+        },
+        "NSG-Name":{"defaultValue": "NSG",
+            "type": "string"       
         }
     },
     "resources": [
@@ -111,7 +114,24 @@
                     "addressPrefix":{"value": "[parameters('VNET-IP')]"},
                     "subnetName":{"value": "[parameters('VNET-SN1-Name')]"},
                     "subnetPrefix":{"value": "[parameters('VNET-SN1-IP')]"},
+                    "nsgName":{"value": "[parameters('NSG-Name')]"},
                     "virtualNetworkName":{"value": "[parameters('VNET-Name')]"}
+                }
+            }
+        },
+        {
+            "apiVersion": "2017-05-10",
+            "name": "Vnet-Template",
+            "type": "Microsoft.Resources/deployments",
+            "comments": "This is link to NSG template",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri":"https://raw.githubusercontent.com/SayreX86/Azure/master/Module4/nsg.json",
+                    "contentVersion":"1.0.0.0"
+                },
+                "parameters": {
+                    "nsgName":{"value": "[parameters('NSG-Name')]"}
                 }
             }
         }

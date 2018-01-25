@@ -74,6 +74,12 @@
         "metadata": {
           "description": ""
         }
+      },
+      "nsgName":{
+        "type": "string",
+        "metadata": {
+          "description": ""
+        }
       }
     },
     "variables": {
@@ -117,7 +123,10 @@
             {
               "name": "[parameters('subnetName')]",
               "properties": {
-                "addressPrefix": "[parameters('subnetPrefix')]"
+                "addressPrefix": "[parameters('subnetPrefix')]",
+                "networkSecurityGroup": {
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('nsgName'))]"
+                    }
               }
             }
           ]
