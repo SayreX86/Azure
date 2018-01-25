@@ -94,6 +94,27 @@
       },
       {
         "apiVersion": "2016-03-30",
+        "type": "Microsoft.Network/virtualNetworks",
+        "name": "[parameters('virtualNetworkName')]",
+        "location": "[resourceGroup().location]",
+        "properties": {
+          "addressSpace": {
+            "addressPrefixes": [
+              "[parameters('addressPrefix')]"
+            ]
+          },
+          "subnets": [
+            {
+              "name": "[parameters('subnetName')]",
+              "properties": {
+                "addressPrefix": "[parameters('subnetPrefix')]"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "apiVersion": "2016-03-30",
         "type": "Microsoft.Network/networkInterfaces",
         "name": "[parameters('nicName')]",
         "location": "[resourceGroup().location]",
