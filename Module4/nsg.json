@@ -19,7 +19,7 @@
     "properties": {
       "securityRules": [
         {
-          "name": "Allow 8080",
+          "name": "Allow-8080",
           "properties": {
             "description": "Allow Port 8080",
             "protocol": "Tcp",
