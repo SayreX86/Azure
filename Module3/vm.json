@@ -80,17 +80,6 @@
         "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), parameters('subnetName'))]"
     },
     "resources": [
-        {
-         "apiVersion": "2016-01-01",
-         "type": "Microsoft.Storage/storageAccounts",
-         "name": "[parameters('storageAccountName')]",
-         "location": "[resourceGroup().location]",
-         "sku": {
-            "name": "Standard_LRS"
-          },
-         "kind": "Storage",
-         "properties": {}
-        },
        {
         "apiVersion": "2016-03-30",
         "type": "Microsoft.Network/publicIPAddresses",
@@ -101,27 +90,6 @@
           "dnsSettings": {
             "domainNameLabel": "[parameters('dnsLabelPrefix')]"
           }
-        }
-      },
-      {
-        "apiVersion": "2016-03-30",
-        "type": "Microsoft.Network/virtualNetworks",
-        "name": "[parameters('virtualNetworkName')]",
-        "location": "[resourceGroup().location]",
-        "properties": {
-          "addressSpace": {
-            "addressPrefixes": [
-              "[parameters('addressPrefix')]"
-            ]
-          },
-          "subnets": [
-            {
-              "name": "[parameters('subnetName')]",
-              "properties": {
-                "addressPrefix": "[parameters('subnetPrefix')]"
-              }
-            }
-          ]
         }
       },
       {
