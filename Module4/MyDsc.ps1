@@ -6,6 +6,7 @@ Configuration IISWebSite
         $NodeName
     )
 
+    PsDscAllowPlainTextPassword = $true
     Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
     Import-DscResource -ModuleName xWebAdministration
 
