@@ -1,20 +1,16 @@
 #region DSC Configuration Definitions
 
-Configuration $ConfigName
+Configuration IISWebSite
 {
+    param (
+        $NodeName
+    )
+
     Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
     Import-DscResource -ModuleName xWebAdministration
 
-    Node $AllNodes.NodeName
+    Node $NodeName
     {
-        LocalConfigurationManager
-        {
-            ConfigurationModeFrequencyMins = 60
-            ConfigurationMode = 'ApplyOnly'
-            RefreshMode = 'Push'
-            RebootNodeIfNeeded = $true
-        }
-  
         #region Windows Features
 
         # Web Server (IIS)
@@ -240,31 +236,15 @@ Configuration $ConfigName
         }
 
         #endregion Windows Features
-
-        #region IIS Configuration
-
-        # Disable Incremental Site ID Computation
-        Registry IncrementalSiteIDCreation
-        {
-            Ensure = 'Present'
-            Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Inetmgr\Parameters'
-            ValueName = 'IncrementalSiteIDCreation'
-            ValueData = '0'
-            ValueType = 'Dword'
-            Force = $true
-            DependsOn = '[WindowsFeature]Web-Server'
-        }
-       #endregion IIS Configuration
     }
-
 }
 
 #endregion DSC Configuration Definitions
 
 #region Main
-
+IISWebSite -Nodename 'localhost'
 try {
-    Start-DscConfiguration -Path $outputDirPath -ComputerName 'localhost' -Force -Wait -Verbose -ErrorAction Stop
+    Start-DscConfiguration -Path .\IISWebSite -ComputerName 'localhost' -Force -Wait -Verbose -ErrorAction Stop
 }
 finally {
 }
