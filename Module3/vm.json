@@ -74,6 +74,18 @@
         "metadata": {
           "description": ""
         }
+      },
+      "DSCPackageSasToken":{
+        "type": "securestring",
+        "metadata": {
+          "description": ""
+        }
+      },
+      "DSCPackagePath":{
+        "type": "securestring",
+        "metadata": {
+          "description": ""
+        }
       }
     },
     "variables": {
@@ -149,6 +161,37 @@
           ]
         }
       },
+      {
+        "name": "[concat(parameters('vmName'),'/Microsoft.Powershell.DSC')]",
+        "type": "Microsoft.Compute/virtualMachines/extensions",
+        "location": "[resourceGroup().location]",
+        "apiVersion": "2016-03-30",
+        "dependsOn": [
+            "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]"
+        ],
+        "properties": {
+            "publisher": "Microsoft.Powershell",
+            "type": "DSC",
+            "typeHandlerVersion": "2.24",
+            "autoUpgradeMinorVersion": true,
+            "protectedSettings": {
+                "configurationUrlSasToken": "[parameters('DSCPackageSasToken')]",
+                "configurationArguments": {
+                    "Credential": {
+                        "Username": "[parameters('adminUsername')]",
+                        "Password": "[parameters('adminPassword')]"
+                    }
+                }
+            },
+            "settings": {
+                "configuration": {
+                    "url": "[parameters('DSCPackagePath')]",
+                    "script": "MyDsc.ps1",
+                    "function": "Main"
+                }
+            }
+          }
+        },
       {
         "apiVersion": "2017-03-30",
         "type": "Microsoft.Compute/virtualMachines",

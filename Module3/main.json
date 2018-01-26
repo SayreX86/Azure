@@ -49,7 +49,14 @@
         },
         "NSG-Name":{"defaultValue": "NSG",
             "type": "string"       
+        },
+        "DSC-SasToken":{"defaultValue": " ",
+            "type": "securestring"       
+        },
+        "DSC-PackagePath":{"defaultValue": " ",
+            "type": "string"       
         }
+
     },
     "resources": [
         {
@@ -115,7 +122,9 @@
                     "addressPrefix":{"value": "[parameters('VNET-IP')]"},
                     "subnetName":{"value": "[parameters('VNET-SN1-Name')]"},
                     "subnetPrefix":{"value": "[parameters('VNET-SN1-IP')]"},
-                    "virtualNetworkName":{"value": "[parameters('VNET-Name')]"}
+                    "virtualNetworkName":{"value": "[parameters('VNET-Name')]"},
+                    "DSCPackageSasToken":{"value": "[parameters('DSC-SasToken')]"},
+                    "DSCPackagePath":{"value": "[parameters('DSC-PackagePath')]"}
                 }
             }
         },
