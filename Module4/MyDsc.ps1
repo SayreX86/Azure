@@ -2,11 +2,13 @@
 
 Configuration IISWebSite
 {
-    param (
+    param 
+    (
+        [System.String[]]
         $NodeName = "localhost"
     )
 
-    PsDscAllowPlainTextPassword = $true
+    Import-DscResource -Module PSDesiredStateConfiguration
     Import-DscResource -ModuleName xWebAdministration
 
     Node $NodeName
@@ -236,6 +238,26 @@ Configuration IISWebSite
         }
 
         #endregion Windows Features
+        
+        #region Website Configuration
+
+        xWebsite DefaultSite
+        {
+            Ensure          = 'Present'
+            Name            = 'Default Web Site'
+            PhysicalPath    = 'C:\inetpub\wwwroot'
+            DependsOn       = '[WindowsFeature]Web-Server'
+            BindingInfo = @(
+            MSFT_xWebBindingInformation
+            {
+                Protocol              = 'HTTP' 
+                Port                  = '8080'
+                IPAddress             = '*'
+            })
+        }
+        
+        #endregion Website Configuration
+
     }
 }
 
