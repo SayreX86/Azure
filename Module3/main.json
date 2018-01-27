@@ -51,7 +51,7 @@
             "type": "string"       
         },
         "DSC-SasToken":{"defaultValue": "",
-            "type": "securestring"       
+            "type": "string"       
         },
         "DSC-PackagePath":{"defaultValue": "https://samayaunikalnayapapka.blob.core.windows.net/windows-powershell-dsc/MyDsc.ps1.zip",
             "type": "string"       

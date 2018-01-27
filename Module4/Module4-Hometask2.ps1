@@ -16,5 +16,5 @@ $DSCSAS = New-AzureStorageBlobSASToken -Container 'windows-powershell-dsc' -Blob
   -ExpiryTime (Get-Date).AddHours(2000)
 
 # provide SAS token during deployment
-New-AzureRmResourceGroup -Name $RG -Location westeurope -Verbose
+New-AzureRmResourceGroup -Name $RG -Location westeurope -Force -Verbose
 New-AzureRmResourceGroupDeployment -ResourceGroupName $RG -TemplateUri 'https://raw.githubusercontent.com/SayreX86/Azure/master/Module3/main.json' -DSC-SasToken $DSCSAS

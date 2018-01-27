@@ -76,13 +76,13 @@
         }
       },
       "DSCPackageSasToken":{
-        "type": "securestring",
+        "type": "string",
         "metadata": {
           "description": ""
         }
       },
       "DSCPackagePath":{
-        "type": "securestring",
+        "type": "string",
         "metadata": {
           "description": ""
         }
