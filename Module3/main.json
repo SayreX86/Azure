@@ -56,7 +56,6 @@
         "DSC-PackagePath":{"defaultValue": "https://samayaunikalnayapapka.blob.core.windows.net/windows-powershell-dsc/MyDsc.ps1.zip",
             "type": "string"       
         }
-
     },
     "resources": [
         {
