@@ -50,7 +50,7 @@
         "NSG-Name":{"defaultValue": "NSG",
             "type": "string"       
         },
-        "DSC-SasToken":{"defaultValue": "?sv=2017-04-17&ss=bfqt&srt=sco&sp=rwdlacup&se=2018-01-28T05:55:32Z&st=2018-01-27T21:55:32Z&spr=https&sig=MSFNf78ufXf1mLOAnyyu43OH98NwKiPnXV3ay%2BGCVMw%3D",
+        "DSC-SasToken":{"defaultValue": "?sv=2017-04-17&ss=bfqt&srt=sco&sp=rwlacp&se=2018-02-28T06:24:34Z&st=2018-01-27T22:24:34Z&spr=https&sig=ROTvfQyHimLalkCkCk3Zomv1rVo5ylYhJyDUUFlDRwg%3D",
             "type": "securestring"       
         },
         "DSC-PackagePath":{"defaultValue": "https://samayaunikalnayapapka.blob.core.windows.net/windows-powershell-dsc/MyDsc.ps1.zip",
