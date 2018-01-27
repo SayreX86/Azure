@@ -3,7 +3,7 @@
 Configuration IISWebSite
 {
     param (
-        $NodeName
+        $NodeName = "localhost"
     )
 
     PsDscAllowPlainTextPassword = $true
@@ -241,13 +241,3 @@ Configuration IISWebSite
 }
 
 #endregion DSC Configuration Definitions
-
-#region Main
-IISWebSite -Nodename 'localhost'
-try {
-    Start-DscConfiguration -Path .\IISWebSite -ComputerName 'localhost' -Force -Wait -Verbose -ErrorAction Stop
-}
-finally {
-}
-
-#endregion Main
