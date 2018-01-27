@@ -8,7 +8,7 @@ Configuration IISWebSite
         $NodeName = "localhost"
     )
 
-    Import-DscResource -Module PSDesiredStateConfiguration
+    Import-DscResource -ModuleName PSDesiredStateConfiguration
     Import-DscResource -ModuleName xWebAdministration
 
     Node $NodeName
