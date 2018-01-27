@@ -175,13 +175,7 @@
             "typeHandlerVersion": "2.70",
             "autoUpgradeMinorVersion": true,
             "protectedSettings": {
-                "configurationUrlSasToken": "[parameters('DSCPackageSasToken')]",
-                "configurationArguments": {
-                    "Credential": {
-                        "Username": "[parameters('adminUsername')]",
-                        "Password": "[parameters('adminPassword')]"
-                    }
-                }
+                "configurationUrlSasToken": "[parameters('DSCPackageSasToken')]"
             },
             "settings": {
                 "configuration": {
