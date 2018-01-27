@@ -50,7 +50,7 @@
         "NSG-Name":{"defaultValue": "NSG",
             "type": "string"       
         },
-        "DSC-SasToken":{"defaultValue": "?sv=2017-04-17&ss=bfqt&srt=sco&sp=rwlacp&se=2018-02-28T03:24:34Z&st=2018-01-27T19:24:34Z&spr=https&sig=Td7OivsA2GLyvL30QGPZnvUaohN2ahDSnazeqaYU%2FAw%3D",
+        "DSC-SasToken":{"defaultValue": "",
             "type": "securestring"       
         },
         "DSC-PackagePath":{"defaultValue": "https://samayaunikalnayapapka.blob.core.windows.net/windows-powershell-dsc/MyDsc.ps1.zip",
