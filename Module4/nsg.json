@@ -14,7 +14,6 @@
     "name": "[parameters('nsgName')]",
     "location": "[resourceGroup().location]",
     "dependsOn": [
-      "[resourceId('Microsoft.Network/publicIPAddresses/', parameters('publicIPAddressName'))]",
       "[resourceId('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
     ],
     "properties": {
