@@ -7,9 +7,7 @@ Configuration IISWebSite
         $NodeName = "localhost"
     )
 
-    Import-DscResource -ModuleName PSDesiredStateConfiguration
-    Import-DscResource -ModuleName xWebAdministration
-    Import-DscResource -ModuleName xNetworking
+    Import-DscResource -ModuleName PSDesiredStateConfiguration, xWebAdministration, xNetworking
 
     Node $NodeName
     {
@@ -60,12 +58,12 @@ Configuration IISWebSite
         xFirewall Firewall
         {
             Name                  = 'Allow 8080 port'
-            DisplayName           = 'Firewall Rule for 8080 port'
+            DisplayName           = 'Allow 8080 port'
             Ensure                = 'Present'
             Enabled               = 'True'
+            Action                = 'Allow'
             Profile               = 'Public'
-            Direction             = 'InBound'
-            RemotePort            = '*'
+            Direction             = 'Inbound'
             LocalPort             = '8080'
             Protocol              = 'TCP'
             Description           = 'Firewall Rule for 8080 port'

@@ -4,6 +4,18 @@ $StorageName = 'sascriptstraining'
 $Location = 'westeurope'
 $DSCConfigPath = 'https://raw.githubusercontent.com/SayreX86/Azure/master/Module4/MyDsc.ps1'
 $TempDSCCOnfigPath = "$env:TEMP\MyDsc.ps1"
+#Check for DSC modules
+$netmodule = Get-DscResource -Module xNetworking | Select-Object -First 1
+$webadmmodule = Get-DscResource -Module xWebAdministration | Select-Object -First 1
+if ($netmodule.ModuleName -eq $null) {
+    Write-Host 'xNetworking module will be installed...' -BackgroundColor DarkCyan
+    Install-Module -Name xNetworking -Scope CurrentUser -Force
+}
+if ($webadmmodule.ModuleName -eq $null) {
+    Write-Host 'xWebAdministration module will be installed...' -BackgroundColor DarkCyan
+    Install-Module -Name xNetworking -Scope CurrentUser -Force
+}
+#Log in Azure Account
 Login-AzureRmAccount
 New-AzureRmResourceGroup -Name $RG2 -Location $Location -Force -Verbose
 #Create StorageAccount to put DSC scripts
