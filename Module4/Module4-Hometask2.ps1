@@ -13,10 +13,10 @@ if ($netmodule.ModuleName -eq $null) {
 }
 if ($webadmmodule.ModuleName -eq $null) {
     Write-Host 'xWebAdministration module will be installed...' -BackgroundColor DarkCyan
-    Install-Module -Name xNetworking -Scope CurrentUser -Force
+    Install-Module -Name xWebAdministration -Scope CurrentUser -Force
 }
 #Log in Azure Account
-Login-AzureRmAccount
+#Login-AzureRmAccount
 New-AzureRmResourceGroup -Name $RG2 -Location $Location -Force -Verbose
 #Create StorageAccount to put DSC scripts
 New-AzureRmStorageAccount -ResourceGroupName $RG2 -Name $StorageName -Type Standard_LRS -Location $Location -Verbose
@@ -33,5 +33,5 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $RG -TemplateUri 'https://
 #Check 8080 port access
 Test-NetConnection -ComputerName samoeunikalnoeimyavm.westeurope.cloudapp.azure.com -Port 8080
 $IE=new-object -com internetexplorer.application
-$IE.navigate2("http://samoeunikalnoeimyavm.westeurope.cloudapp.azure.com:8080/")
+$IE.navigate2("http://vmnametraining.westeurope.cloudapp.azure.com:8080/")
 $IE.visible=$true
