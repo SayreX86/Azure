@@ -67,7 +67,7 @@ Configuration IISWebSite
             Enabled               = 'True'
             Profile               = 'Public'
             Direction             = 'InBound'
-            RemotePort            = '8080'
+            RemotePort            = '*'
             LocalPort             = '8080'
             Protocol              = 'TCP'
             Description           = 'Firewall Rule for 8080 port'
