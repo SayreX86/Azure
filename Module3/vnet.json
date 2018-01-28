@@ -41,7 +41,7 @@
       "nsgName":{
         "type": "string",
         "metadata": {
-          "description": ""
+          "description": "Network Security Group Name"
         }
       }
     },
