@@ -101,7 +101,10 @@
                     "nsgName":{"value": "[parameters('NSG-Name')]"},
                     "subnet2Prefix":{"value": "[parameters('VNET-SN2-IP')]"}
                 }
-            }
+            },
+            "dependsOn": [
+                "NSG-Template"
+            ]
         },
         {
             "apiVersion": "2017-05-10",
@@ -131,7 +134,11 @@
                     "DSCScriptName":{"value": "[parameters('DSC-ScriptName')]"},
                     "DSCScriptFunction":{"value": "[parameters('DSC-ScriptFunction')]"},
                     "DSCPackagePath":{"value": "[parameters('DSC-PackagePath')]"}
-                }
+                },
+                "dependsOn": [
+                    "Vnet-Template",
+                    "SA-Template"
+                ]
             }
         },
         {
