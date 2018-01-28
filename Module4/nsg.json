@@ -3,10 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "nsgName":{
-        "type": "string",
-        "metadata": {
-          "description": ""
-        }
+        "type": "string"
       }
     },
     "variables": {},
@@ -17,11 +14,13 @@
     "name": "[parameters('nsgName')]",
     "location": "[resourceGroup().location]",
     "dependsOn": [
+      "[resourceId('Microsoft.Network/publicIPAddresses/', parameters('publicIPAddressName'))]",
       "[resourceId('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
     ],
+    "properties": {
       "securityRules": [
         {
-          "name": "Allow_8080",
+          "name": "Allow8080",
           "properties": {
             "description": "Allow Port 8080",
             "protocol": "Tcp",
@@ -32,10 +31,10 @@
             "access": "Allow",
             "priority": 100,
             "direction": "Inbound"
+          }
         }
-     }
+      ]
+    }
+    }
     ]
-   }
-  }
- ]
 }

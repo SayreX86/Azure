@@ -55,6 +55,12 @@
         },
         "DSC-PackagePath":{"defaultValue": "https://samayaunikalnayapapka.blob.core.windows.net/windows-powershell-dsc/MyDsc.ps1.zip",
             "type": "string"       
+        },
+        "DSC-ScriptName":{"defaultValue": "MyDsc.ps1",
+            "type": "string"       
+        },
+        "DSC-ScriptFunction":{"defaultValue": "IISWebSite",
+            "type": "string"       
         }
     },
     "resources": [
@@ -122,6 +128,8 @@
                     "subnetPrefix":{"value": "[parameters('VNET-SN1-IP')]"},
                     "virtualNetworkName":{"value": "[parameters('VNET-Name')]"},
                     "DSCPackageSasToken":{"value": "[parameters('DSC-SasToken')]"},
+                    "DSCScriptName":{"value": "[parameters('DSC-ScriptName')]"},
+                    "DSCScriptFunction":{"value": "[parameters('DSC-ScriptFunction')]"},
                     "DSCPackagePath":{"value": "[parameters('DSC-PackagePath')]"}
                 }
             }
