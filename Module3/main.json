@@ -26,7 +26,7 @@
         "VNET-SN2-IP":{"defaultValue": "10.0.1.0/24",
             "type": "string"       
         },
-        "VM-Admin-Name":{"defaultValue": "Administrator-epta",
+        "VM-Admin-Name":{"defaultValue": "NewSuperUser",
             "type": "string"       
         },
         "VM-Admin-Password":{"defaultValue": "P@ssw0rd-epta",
