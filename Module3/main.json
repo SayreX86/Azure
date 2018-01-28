@@ -72,7 +72,6 @@
                 "parameters": {
                     "storageAccountName":{"value": "[parameters('SA-AccountName')]"},
                     "storageAccountType":{"value": "[parameters('SA-AccountType')]"}
-                    
                 }
             }
         },
