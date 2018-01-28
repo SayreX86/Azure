@@ -19,7 +19,7 @@ if ($webadmmodule.ModuleName -eq $null) {
     Install-Module -Name xWebAdministration -Scope CurrentUser -Force
 }
 #Log in Azure Account
-#Login-AzureRmAccount
+Login-AzureRmAccount
 $s = Get-AzureRmSubscription | Out-GridView -PassThru -Title "Select subscription"
 Set-AzureRmContext -SubscriptionId $s.SubscriptionId
 New-AzureRmResourceGroup -Name $RG2 -Location $Location -Force -Verbose
