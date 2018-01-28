@@ -34,6 +34,20 @@
             "priority": 100,
             "direction": "Inbound"
           }
+        },
+        {
+          "name": "Allow3389",
+          "properties": {
+            "description": "Allow Port 3389",
+            "protocol": "Tcp",
+            "sourcePortRange": "*",
+            "destinationPortRange": "3389",
+            "sourceAddressPrefix": "*",
+            "destinationAddressPrefix": "VirtualNetwork",
+            "access": "Allow",
+            "priority": 101,
+            "direction": "Inbound"
+          }
         }
       ]
     }
