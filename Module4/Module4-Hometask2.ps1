@@ -12,11 +12,11 @@ $netmodule = Get-DscResource -Module xNetworking | Select-Object -First 1
 $webadmmodule = Get-DscResource -Module xWebAdministration | Select-Object -First 1
 if ($netmodule.ModuleName -eq $null) {
     Write-Host 'xNetworking module will be installed...' -BackgroundColor DarkCyan
-    Install-Module -Name xNetworking -Scope CurrentUser -Force
+    Install-Module -Name xNetworking -Scope CurrentUser -Force | Out-Null
 }
 if ($webadmmodule.ModuleName -eq $null) {
     Write-Host 'xWebAdministration module will be installed...' -BackgroundColor DarkCyan
-    Install-Module -Name xWebAdministration -Scope CurrentUser -Force
+    Install-Module -Name xWebAdministration -Scope CurrentUser -Force | Out-Null
 }
 #Log in Azure Account
 Login-AzureRmAccount
