@@ -16,7 +16,10 @@
     "type": "Microsoft.Network/networkSecurityGroups",
     "name": "[parameters('nsgName')]",
     "location": "[resourceGroup().location]",
-    "properties": {
+    "dependsOn": [
+      "[resourceId('Microsoft.Network/publicIPAddresses/', parameters('publicIPAddressName'))]",
+      "[resourceId('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
+    ],
       "securityRules": [
         {
           "name": "Allow_8080",
