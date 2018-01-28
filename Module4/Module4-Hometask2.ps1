@@ -33,7 +33,6 @@ Publish-AzureRmVMDscConfiguration -ConfigurationPath $TempDSCCOnfigPath -Resourc
 $DSCSAS = New-AzureStorageBlobSASToken -Container 'windows-powershell-dsc' -Blob 'MyDsc.ps1.zip' -Permission r -ExpiryTime (Get-Date).AddHours(2000)
 #Provide SAS token during deployment
 New-AzureRmResourceGroup -Name $RG -Location westeurope -Force -Verbose
-Write-Host "Please wait..." -BackgroundColor DarkCyan
 New-AzureRmResourceGroupDeployment -ResourceGroupName $RG `
 -TemplateUri 'https://raw.githubusercontent.com/SayreX86/Azure/master/Module3/main.json' `
 -DSC-SasToken $DSCSAS -DNS-Name $vmnamerandom -Verbose
