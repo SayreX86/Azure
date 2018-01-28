@@ -76,7 +76,7 @@
         }
       },
       "DSCPackageSasToken":{
-        "type": "string",
+        "type": "securestring",
         "metadata": {
           "description": ""
         }
