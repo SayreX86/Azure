@@ -86,18 +86,6 @@
         "metadata": {
           "description": ""
         }
-      },
-      "DSCScriptName":{
-        "type": "string",
-        "metadata": {
-          "description": ""
-        }
-      },
-      "DSCScriptFunction":{
-        "type": "string",
-        "metadata": {
-          "description": ""
-        }
       }
     },
     "variables": {
@@ -192,8 +180,8 @@
             "settings": {
                 "configuration": {
                     "url": "[parameters('DSCPackagePath')]",
-                    "script": "[parameters('DSCScriptName')]",
-                    "function": "[parameters('DSCScriptFunction')]"
+                    "script": "MyDsc.ps1",
+                    "function": "IISWebSite"
                 }
             }
           }
