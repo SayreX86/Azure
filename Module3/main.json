@@ -5,7 +5,7 @@
         "SA-AccountType":{"defaultValue": "Standard_LRS",
             "type": "string"
         },
-        "SA-AccountName":{"defaultValue": "samoeunikalnoeimyavmire",
+        "SA-AccountName":{"defaultValue": "SA-VM",
             "type": "string"       
         },
         "VNET-Name":{"defaultValue": "VNET",

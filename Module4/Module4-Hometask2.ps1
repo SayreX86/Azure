@@ -1,6 +1,6 @@
 $RG = 'RG'
 $RG2 = 'RG2'
-$StorageName = 'samayaunikalnayapapka'
+$StorageName = 'SA-Scripts'
 $Location = 'westeurope'
 $DSCConfigPath = 'https://raw.githubusercontent.com/SayreX86/Azure/master/Module4/MyDsc.ps1'
 $TempDSCCOnfigPath = "$env:TEMP\MyDsc.ps1"
