@@ -134,12 +134,12 @@
                     "DSCScriptName":{"value": "[parameters('DSC-ScriptName')]"},
                     "DSCScriptFunction":{"value": "[parameters('DSC-ScriptFunction')]"},
                     "DSCPackagePath":{"value": "[parameters('DSC-PackagePath')]"}
-                },
-                "dependsOn": [
-                    "Vnet-Template",
-                    "SA-Template"
-                ]
-            }
+                }
+            },
+            "dependsOn": [
+                "Vnet-Template",
+                "SA-Template"
+            ]
         },
         {
             "apiVersion": "2017-05-10",
