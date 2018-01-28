@@ -146,7 +146,8 @@
                     "contentVersion":"1.0.0.0"
                 },
                 "parameters": {
-                    "nsgName":{"value": "[parameters('NSG-Name')]"}
+                    "nsgName":{"value": "[parameters('NSG-Name')]"},
+                    "virtualNetworkName":{"value": "[parameters('VNET-Name')]"}
                 }
             }
         }

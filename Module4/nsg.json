@@ -4,6 +4,9 @@
     "parameters": {
       "nsgName":{
         "type": "string"
+      },
+      "virtualNetworkName":{
+        "type": "string"
       }
     },
     "variables": {},
@@ -13,6 +16,9 @@
     "type": "Microsoft.Network/networkSecurityGroups",
     "name": "[parameters('nsgName')]",
     "location": "[resourceGroup().location]",
+    "dependsOn": [
+      "[resourceId('Microsoft.Network/virtualNetworks/', parameters('virtualNetworkName'))]"
+    ],
     "properties": {
       "securityRules": [
         {
