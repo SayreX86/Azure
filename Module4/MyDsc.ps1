@@ -1,5 +1,4 @@
 #region DSC Configuration Definitions
-
 Configuration IISWebSite
 {
     param 
@@ -38,7 +37,6 @@ Configuration IISWebSite
             Name = 'Web-Mgmt-Console'
             DependsOn = '[WindowsFeature]Web-Mgmt-Tools'
         }
-        
         #endregion Windows Features
         
         #region Website Configuration
@@ -75,5 +73,4 @@ Configuration IISWebSite
         #endregion Firewall Configuration
     }
 }
-
 #endregion DSC Configuration Definitions
