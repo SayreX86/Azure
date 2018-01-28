@@ -35,7 +35,7 @@
         "Windows-Version":{"defaultValue": "2016-Datacenter",
             "type": "string"       
         },
-        "DNS-Name":{"defaultValue": "vmnametraining",
+        "DNS-Name":{"defaultValue": "",
             "type": "string"       
         },
         "VM-NIC-Name":{"defaultValue": "VM-NIC",

@@ -4,6 +4,9 @@ $StorageName = 'sascriptstraining'
 $Location = 'westeurope'
 $DSCConfigPath = 'https://raw.githubusercontent.com/SayreX86/Azure/master/Module4/MyDsc.ps1'
 $TempDSCCOnfigPath = "$env:TEMP\MyDsc.ps1"
+$random = Get-Random
+$vmname = 'vmnametraining-'
+$vmnamerandom = $vmname+$random
 #Check for DSC modules
 $netmodule = Get-DscResource -Module xNetworking | Select-Object -First 1
 $webadmmodule = Get-DscResource -Module xWebAdministration | Select-Object -First 1
@@ -17,6 +20,8 @@ if ($webadmmodule.ModuleName -eq $null) {
 }
 #Log in Azure Account
 #Login-AzureRmAccount
+$s = Get-AzureRmSubscription | Out-GridView -PassThru -Title "Select subscription"
+Set-AzureRmContext -SubscriptionId $s.SubscriptionId
 New-AzureRmResourceGroup -Name $RG2 -Location $Location -Force -Verbose
 #Create StorageAccount to put DSC scripts
 New-AzureRmStorageAccount -ResourceGroupName $RG2 -Name $StorageName -Type Standard_LRS -Location $Location -Verbose
@@ -29,9 +34,10 @@ $DSCSAS = New-AzureStorageBlobSASToken -Container 'windows-powershell-dsc' -Blob
 #Provide SAS token during deployment
 New-AzureRmResourceGroup -Name $RG -Location westeurope -Force -Verbose
 Write-Host "Please wait..." -BackgroundColor DarkCyan
-New-AzureRmResourceGroupDeployment -ResourceGroupName $RG -TemplateUri 'https://raw.githubusercontent.com/SayreX86/Azure/master/Module3/main.json' -DSC-SasToken $DSCSAS -Verbose
+New-AzureRmResourceGroupDeployment -ResourceGroupName $RG `
+-TemplateUri 'https://raw.githubusercontent.com/SayreX86/Azure/master/Module3/main.json' `
+-DSC-SasToken $DSCSAS -DNS-Name $vmnamerandom -Verbose
 #Check 8080 port access
-Test-NetConnection -ComputerName samoeunikalnoeimyavm.westeurope.cloudapp.azure.com -Port 8080
 $IE=new-object -com internetexplorer.application
-$IE.navigate2("http://vmnametraining.westeurope.cloudapp.azure.com:8080/")
+$IE.navigate2("http://$vmnamerandom.westeurope.cloudapp.azure.com:8080/")
 $IE.visible=$true
