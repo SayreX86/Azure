@@ -21,21 +21,6 @@ Configuration IISWebSite
             Ensure = 'Present'
             Name = 'Web-Server'
         }
-
-        # Web Server (IIS) > Web Server
-        WindowsFeature Web-WebServer
-        {
-            Ensure = 'Present'
-            Name = 'Web-WebServer'
-            DependsOn = '[WindowsFeature]Web-Server'
-        }
-
-        # Web Server (IIS) > ASP.NET 4.5 
-        WindowsFeature ASP 
-        { 
-            Ensure = 'Present'
-            Name = 'Web-Asp-Net45'
-        }
         
         #endregion Windows Features
         
