@@ -5,7 +5,7 @@
         "SA-AccountType":{"defaultValue": "Standard_LRS",
             "type": "string"
         },
-        "SA-AccountName":{"defaultValue": "SA-VM",
+        "SA-AccountName":{"defaultValue": "sa-vm-training",
             "type": "string"       
         },
         "VNET-Name":{"defaultValue": "VNET",
