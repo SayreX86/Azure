@@ -65,7 +65,7 @@
         "AACC-Name":{"defaultValue": "AACC-ARM",
             "type": "string"       
         },
-        "CRED-Name":{"defaultValue": "",
+        "CRED-Name":{"defaultValue": "CRED-Name",
             "type": "string"       
         },
         "User-Name":{"defaultValue": "USER-NAME",
