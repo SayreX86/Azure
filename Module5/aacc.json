@@ -72,10 +72,9 @@
             ],
             "tags": { },
             "properties": {
-              "runbookType": "Script",
+              "runbookType": "Graph",
               "logProgress": "false",
               "logVerbose": "false",
-              "description": "Authenticates to Azure and lists all the Azure VMs",
               "publishContentLink": {
                 "uri": "[parameters('scriptUri')]",
                 "version": "1.0.0.0"
