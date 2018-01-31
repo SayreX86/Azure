@@ -61,6 +61,27 @@
         },
         "DSC-ScriptFunction":{"defaultValue": "IISWebSite",
             "type": "string"       
+        },
+        "AACC-Name":{"defaultValue": "AACC-ARM",
+            "type": "string"       
+        },
+        "CRED-Name":{"defaultValue": "CRED-ARM",
+            "type": "string"       
+        },
+        "User-Name":{"defaultValue": "USER-NAME",
+            "type": "string"       
+        },
+        "Password":{"defaultValue": "P@ssw0rd-epta",
+            "type": "securestring"       
+        },
+        "JOB-Id":{"defaultValue": "Runbook-job",
+            "type": "string"       
+        },
+        "RUNBOOK-Name":{"defaultValue": "RUNBOOK",
+            "type": "string"       
+        },
+        "SCRIPT-URI":{"defaultValue": "https://sascriptstraining.blob.core.windows.net/runbooks/RUNBOOK.graphrunbook",
+            "type": "string"       
         }
     },
     "resources": [
@@ -154,6 +175,28 @@
                 },
                 "parameters": {
                     "nsgName":{"value": "[parameters('NSG-Name')]"}
+                }
+            }
+        },
+        {
+            "apiVersion": "2017-05-10",
+            "name": "Runbook-Template",
+            "type": "Microsoft.Resources/deployments",
+            "comments": "This is link to Runbook template",
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri":"https://raw.githubusercontent.com/SayreX86/Azure/master/Module5/aacc.json",
+                    "contentVersion":"1.0.0.0"
+                },
+                "parameters": {
+                    "accountName":{"value": "[parameters('AACC-Name')]"},
+                    "credentialName":{"value": "[parameters('CRED-Name')]"},
+                    "userName":{"value": "[parameters('User-Name')]"},
+                    "password":{"value": "[parameters('Password')]"},
+                    "jobId":{"value": "[parameters('JOB-Id')]"},
+                    "runbookName":{"value": "[parameters('RUNBOOK-Name')]"},
+                    "scriptUri":{"value": "[parameters('SCRIPT-URI')]"}
                 }
             }
         }
