@@ -65,16 +65,16 @@
         "AACC-Name":{"defaultValue": "AACC-ARM",
             "type": "string"       
         },
-        "CRED-Name":{"defaultValue": "CRED-Name",
+        "CRED-Name":{"defaultValue": "AutoRunbook",
             "type": "string"       
         },
-        "User-Name":{"defaultValue": "USER-NAME",
+        "User-Name":{"defaultValue": "automation@sayrexgstut.onmicrosoft.com",
             "type": "string"       
         },
-        "Password":{"defaultValue": "P@ssw0rd-epta",
+        "Password":{"defaultValue": "Qofu00172018",
             "type": "securestring"       
         },
-        "JOB-Id":{"defaultValue": "Runbook-job",
+        "JOB-Id":{"defaultValue": "ae64c817-e0ad-4d24-94a0-48f35663747c",
             "type": "string"       
         },
         "RUNBOOK-Name":{"defaultValue": "RUNBOOK",
