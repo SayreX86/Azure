@@ -65,6 +65,9 @@
         "AACC-Name":{"defaultValue": "AACC-ARM",
             "type": "string"       
         },
+        "CRED-Name":{"defaultValue": "someautocredname",
+            "type": "string"       
+        },
         "User-Name":{"defaultValue": "automation@sayrexgstut.onmicrosoft.com",
             "type": "string"       
         },
@@ -188,6 +191,7 @@
                 },
                 "parameters": {
                     "accountName":{"value": "[parameters('AACC-Name')]"},
+                    "credentialName":{"value": "[parameters('CRED-Name')]"},
                     "userName":{"value": "[parameters('User-Name')]"},
                     "password":{"value": "[parameters('Password')]"},
                     "jobId":{"value": "[parameters('JOB-Id')]"},
