@@ -65,7 +65,7 @@
         "AACC-Name":{"defaultValue": "AutomationAcc",
             "type": "string"       
         },
-        "CRED-Name":{"defaultValue": "someautocredname",
+        "CRED-Name":{"defaultValue": "AutoRunbook",
             "type": "string"       
         },
         "User-Name":{"defaultValue": "automation@sayrexgstut.onmicrosoft.com",
