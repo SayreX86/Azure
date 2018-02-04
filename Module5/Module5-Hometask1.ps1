@@ -20,6 +20,10 @@ if ($webadmmodule.ModuleName -eq $null) {
 
 #Log in Azure Account
 Login-AzureRmAccount
+while ((Get-AzureRmVM -ResourceGroupName $RG -Status).powerstate -ne 'VM running') {
+    Write-Host "Azure VM starting..."
+    Get-AzureRmVM | Start-AzureRmVM
+}
 $s = Get-AzureRmSubscription | Out-GridView -PassThru -Title "Select subscription"
 Set-AzureRmContext -SubscriptionId $s.SubscriptionId
 New-AzureRmResourceGroup -Name $RG2 -Location $Location -Force -Verbose
