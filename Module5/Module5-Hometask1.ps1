@@ -31,16 +31,16 @@ Set-AzureRmCurrentStorageAccount -ResourceGroupName $RG2 -Name $StorageName -Ver
 #Download DSC script from GitHub and publish it
 Invoke-WebRequest -Uri $DSCConfigPath -OutFile $TempDSCCOnfigPath
 Publish-AzureRmVMDscConfiguration -ConfigurationPath $TempDSCCOnfigPath -ResourceGroupName $RG2 -StorageAccountName $StorageName -Force -Verbose
-#>
 
 # Get the SAS token
 $DSCSAS = New-AzureStorageBlobSASToken -Container 'windows-powershell-dsc' -Blob 'MyDsc.ps1.zip' -Permission r -ExpiryTime (Get-Date).AddHours(2000)
+#>
 
 #Provide SAS token during deployment
 New-AzureRmResourceGroup -Name $RG -Location westeurope -Force -Verbose
 New-AzureRmResourceGroupDeployment -ResourceGroupName $RG `
 -TemplateUri 'https://raw.githubusercontent.com/SayreX86/Azure/master/Module3/main.json' `
--DSC-SasToken $DSCSAS -DNS-Name $vmname -Verbose
+-DNS-Name $vmname -Verbose
 
 <#Check 8080 port access
 $IE=new-object -com internetexplorer.application
