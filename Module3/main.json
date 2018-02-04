@@ -62,7 +62,7 @@
         "DSC-ScriptFunction":{"defaultValue": "IISWebSite",
             "type": "string"       
         },
-        "AACC-Name":{"defaultValue": "AACC-ARM",
+        "AACC-Name":{"defaultValue": "AutomationAcc",
             "type": "string"       
         },
         "CRED-Name":{"defaultValue": "someautocredname",
