@@ -1,8 +1,9 @@
 configuration MyDSC2
-{
-    Import-DscResource -ModuleName 'PSDesiredStateConfiguration'
+{	
+    Import-DscResource -ModuleName PSDesiredStateConfiguration
+    Import-DscResource -ModuleName xWebAdministration
 	
-	Node WEB
+	Node VMWEB
     {
 		WindowsFeature IIS
         {
@@ -14,18 +15,16 @@ configuration MyDSC2
         {
             Ensure = 'Present'
             Name = 'Web-Mgmt-Tools'
-            DependsOn = '[WindowsFeature]Web-Server'
         }
 
         WindowsFeature Web-Mgmt-Console
         {
             Ensure = 'Present'
             Name = 'Web-Mgmt-Console'
-            DependsOn = '[WindowsFeature]Web-Mgmt-Tools'
         }
     }
 	
-	Node NOTWEB
+	Node VMNOTWEB
     {
         WindowsFeature IIS
         {
@@ -34,5 +33,3 @@ configuration MyDSC2
         }
     }
 }
-
-MyDSC2
