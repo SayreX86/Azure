@@ -1,16 +1,31 @@
 configuration MyDSC2
 {
-    Node WebServer
+    Import-DscResource -ModuleName 'PSDesiredStateConfiguration'
+	
+	Node WEB
     {
-        WindowsFeature IIS
+		WindowsFeature IIS
         {
             Ensure  = 'Present'
             Name    = 'Web-Server'
-            IncludeAllSubFeature = $true
+        }
+
+        WindowsFeature Web-Mgmt-Tools
+        {
+            Ensure = 'Present'
+            Name = 'Web-Mgmt-Tools'
+            DependsOn = '[WindowsFeature]Web-Server'
+        }
+
+        WindowsFeature Web-Mgmt-Console
+        {
+            Ensure = 'Present'
+            Name = 'Web-Mgmt-Console'
+            DependsOn = '[WindowsFeature]Web-Mgmt-Tools'
         }
     }
-
-    Node NotWebServer
+	
+	Node NOTWEB
     {
         WindowsFeature IIS
         {
@@ -19,3 +34,5 @@ configuration MyDSC2
         }
     }
 }
+
+MyDSC2
