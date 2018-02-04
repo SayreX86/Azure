@@ -198,7 +198,10 @@
                     "runbookName":{"value": "[parameters('RUNBOOK-Name')]"},
                     "scriptUri":{"value": "[parameters('SCRIPT-URI')]"}
                 }
-            }
+            },
+            "dependsOn": [
+                "VM-Template"
+            ]
         }
     ]
 }
