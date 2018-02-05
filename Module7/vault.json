@@ -160,7 +160,7 @@
             "apiVersion": "2016-06-01",
             "location": "[resourceGroup().location]",
             "type": "Microsoft.RecoveryServices/vaults/backupFabrics/protectionContainers/protectedItems",
-            "name": "[concat(parameters('vaultName'), '/', parameters('backupFabric'), '/', parameters('protectionContainer'), '/', parameters('protectedItem'))]",
+            "name": "[concat(parameters('vaultName'), '/', variables('backupFabric'), '/', parameters('protectionContainer'), '/', parameters('protectedItem'))]",
             "dependsOn": [
                 "[resourceId('Microsoft.Compute/virtualMachines/', parameters('vmName'))]",
                 "[resourceId('Microsoft.RecoveryServices/vaults/', parameters('vaultName'))]"
