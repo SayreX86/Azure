@@ -1,68 +1,86 @@
-{
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-      "vaultName": {
-        "type": "string",
-        "metadata": {
-          "description": "Name of the Vault"
+    {
+        "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+        "contentVersion": "1.0.0.0",
+        "parameters": {
+        "vaultName": {
+            "type": "string",
+            "metadata": {
+            "description": "Name of the Vault"
+            }
+        },
+        "policyName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the Backup Policy"
+            }
+        },
+        "scheduleRunTimes": {
+            "type": "array",
+            "metadata": {
+                "description": "Times in day when backup should be triggered. e.g. 01:00, 13:00. This will be used in LTR too for daily, weekly, monthly and yearly backup."
+            }
+        },
+        "timeZone": {
+            "type": "string",
+            "metadata": {
+                "description": "Any Valid timezone, for example:UTC, Pacific Standard Time. Refer: https://msdn.microsoft.com/en-us/library/gg154758.aspx"
+            }
+        },
+        "dailyRetentionDurationCount": {
+            "type": "int",
+            "metadata": {
+                "description": "Number of days you want to retain the backup"
+            }
+        },
+        "daysOfTheWeek": {
+            "type": "array",
+            "metadata": {
+                "description": "Backup will run on array of Days like, Monday, Tuesday etc. Applies in Weekly retention only."
+            }
+        },   
+        "weeklyRetentionDurationCount": {
+            "type": "int",
+            "metadata": {
+                "description": "Number of weeks you want to retain the backup"
+            }
+        },
+        "monthlyRetentionDurationCount": {
+            "type": "int",
+            "metadata": {
+                "description": "Number of months you want to retain the backup"
+            }
+        },
+        "monthsOfYear": {
+            "type": "array",
+            "metadata": {
+                "description": "Array of Months for Yearly Retention"
+            }
+        },
+        "yearlyRetentionDurationCount": {
+            "type": "int",
+            "metadata": {
+                "description": "Number of years you want to retain the backup"
+            }
+        },
+        "existingVirtualMachinesResourceGroup": {
+            "type": "string",
+            "metadata": {
+                "description": "Resource group where the virtual machines are located."
+            }
+        },
+        "existingVirtualMachines": {
+            "type": "array",
+            "metadata": {
+                "description": "Array of Azure virtual machines. e.g. [\"vm1\",\"vm2\",\"vm3\"]"
+            }
         }
     },
-    "policyName": {
-        "type": "string",
-        "metadata": {
-            "description": "Name of the Backup Policy"
-        }
+    "variables": {
+        "backupFabric": "Azure",
+        "v2VmType": "Microsoft.Compute/virtualMachines",
+        "v2VmContainer": "iaasvmcontainer;iaasvmcontainerv2;",
+        "v2Vm": "vm;iaasvmcontainerv2;"
     },
-    "scheduleRunTimes": {
-        "type": "array",
-        "metadata": {
-            "description": "Times in day when backup should be triggered. e.g. 01:00, 13:00. This will be used in LTR too for daily, weekly, monthly and yearly backup."
-        }
-    },
-    "timeZone": {
-        "type": "string",
-        "metadata": {
-            "description": "Any Valid timezone, for example:UTC, Pacific Standard Time. Refer: https://msdn.microsoft.com/en-us/library/gg154758.aspx"
-        }
-    },
-    "dailyRetentionDurationCount": {
-        "type": "int",
-        "metadata": {
-            "description": "Number of days you want to retain the backup"
-        }
-    },
-    "daysOfTheWeek": {
-        "type": "array",
-        "metadata": {
-            "description": "Backup will run on array of Days like, Monday, Tuesday etc. Applies in Weekly retention only."
-        }
-    },   
-    "weeklyRetentionDurationCount": {
-        "type": "int",
-        "metadata": {
-            "description": "Number of weeks you want to retain the backup"
-        }
-    },
-    "monthlyRetentionDurationCount": {
-        "type": "int",
-        "metadata": {
-            "description": "Number of months you want to retain the backup"
-        }
-    },
-    "monthsOfYear": {
-        "type": "array",
-        "metadata": {
-            "description": "Array of Months for Yearly Retention"
-        }
-    },
-    "yearlyRetentionDurationCount": {
-        "type": "int",
-        "metadata": {
-            "description": "Number of years you want to retain the backup"
-        }
-    }
-},
     "resources": [
       {
         "type": "Microsoft.RecoveryServices/vaults",
@@ -144,6 +162,21 @@
             },
             "timeZone": "[parameters('timeZone')]"
           }
+        },
+        {
+            "name": "[concat(parameters('vaultName'), '/', variables('backupFabric'), '/', variables('v2VmContainer'), concat(parameters('existingVirtualMachinesResourceGroup'),';',parameters('existingVirtualMachines')[copyIndex()]), '/', variables('v2Vm'), concat(parameters('existingVirtualMachinesResourceGroup'),';',parameters('existingVirtualMachines')[copyIndex()]))]",
+            "apiVersion": "2016-06-01",
+            "location": "[resourceGroup().location]",
+            "type": "Microsoft.RecoveryServices/vaults/backupFabrics/protectionContainers/protectedItems",
+            "copy": {
+                "name": "v2VmsCopy",
+                "count": "[length(parameters('existingVirtualMachines'))]"
+            },
+            "properties": {
+                "protectedItemType": "[variables('v2VmType')]",
+                "policyId": "[resourceId('Microsoft.RecoveryServices/vaults/backupPolicies',parameters('vaultName'),parameters('policyName'))]",
+                "sourceResourceId": "[resourceId(subscription().subscriptionId,parameters('existingVirtualMachinesResourceGroup'),'Microsoft.Compute/virtualMachines',parameters('existingVirtualMachines')[copyIndex()])]"
+            }
         }
     ]
   }
