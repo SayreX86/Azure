@@ -77,8 +77,9 @@
     },
     "variables": {
         "backupFabric": "Azure",
-        "protectionContainer": "[concat('iaasvmcontainer;iaasvmcontainerv2;', parameters('rgName'), ';', parameters('vmName'))]",
-        "protectedItem": "[concat('vm;iaasvmcontainerv2;', parameters('rgName'), ';', parameters('vmName'))]"    
+        "v2VmType": "Microsoft.Compute/virtualMachines",
+        "v2VmContainer": "iaasvmcontainer;iaasvmcontainerv2;",
+        "v2Vm": "vm;iaasvmcontainerv2;"
     },
     "resources": [
       {
@@ -163,14 +164,18 @@
           }
         },
         {
+            "name": "[concat(parameters('vaultName'), '/', variables('backupFabric'), '/', variables('v2VmContainer'), concat(parameters('rgName'),';',parameters('vmName')[copyIndex()]), '/', variables('v2Vm'), concat(parameters('rgName'),';',parameters('vmName')[copyIndex()]))]",
             "apiVersion": "2016-06-01",
             "location": "[resourceGroup().location]",
             "type": "Microsoft.RecoveryServices/vaults/backupFabrics/protectionContainers/protectedItems",
-            "name": "[concat(parameters('vaultName'), '/', variables('backupFabric'), '/', variables('protectionContainer'), '/', variables('protectedItem'))]",
+            "copy": {
+                "name": "v2VmsCopy",
+                "count": "[length(parameters('vmName'))]"
+            },
             "properties": {
-                "protectedItemType": "Microsoft.ClassicCompute/virtualMachines",
-                "policyId": "[resourceId('Microsoft.RecoveryServices/vaults/backupPolicies',parameters('vaultName'),parameters('policyName'))]",
-                "sourceResourceId": "[resourceId('Microsoft.Compute/virtualMachines/', parameters('vmName'))]"
+                "protectedItemType": "[variables('v2VmType')]",
+                "policyId": "[resourceId('Microsoft.RecoveryServices/vaults/backupPolicies',parameters('vaultName'),parameters('policyName') )]",
+                "sourceResourceId": "[resourceId(subscription().subscriptionId,parameters('rgName'),'Microsoft.Compute/virtualMachines',parameters('vmName')[copyIndex()])]"
             }
         }
     ]
