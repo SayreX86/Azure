@@ -49,6 +49,12 @@
         "metadata": {
             "description": "Number of weeks you want to retain the backup"
         }
+    },
+    "daysOfTheWeekForMontlyRetention": {
+        "type": "array",
+        "metadata": {
+            "description": "Array of Days for Monthly Retention (Min One or Max all values from scheduleRunDays, but not any other days which are not part of scheduleRunDays)"
+        }
     },     
     "monthlyRetentionDurationCount": {
         "type": "int",

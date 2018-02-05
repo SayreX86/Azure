@@ -26,6 +26,9 @@
       "weeklyRetentionDurationCount": {
           "value": 104
       },
+      "daysOfTheWeekForMontlyRetention": {
+        "value": [ "Sunday", "Tuesday" ]
+      },
       "monthlyRetentionDurationCount": {
           "value": 60
       },
