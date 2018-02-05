@@ -14,12 +14,6 @@
             "description": "Name of the Backup Policy"
         }
     },
-    "scheduleRunDays": {
-        "type": "array",
-        "metadata": {
-            "description": "Backup Schedule will run on array of Days like, Monday, Tuesday etc. Applies in Weekly Backup Type only."
-        }
-    },
     "scheduleRunTimes": {
         "type": "array",
         "metadata": {
@@ -50,12 +44,6 @@
             "description": "Number of weeks you want to retain the backup"
         }
     },
-    "daysOfTheWeekForMontlyRetention": {
-        "type": "array",
-        "metadata": {
-            "description": "Array of Days for Monthly Retention (Min One or Max all values from scheduleRunDays, but not any other days which are not part of scheduleRunDays)"
-        }
-    },     
     "monthlyRetentionDurationCount": {
         "type": "int",
         "metadata": {
@@ -94,69 +82,69 @@
         "dependsOn": [ "[concat('Microsoft.RecoveryServices/vaults/', parameters('vaultName'))]" ],
         "location": "[resourceGroup().location]",
         "properties": {
-          "backupManagementType": "AzureIaasVM",
-          "schedulePolicy": {
-            "scheduleRunFrequency": "Weekly",
-            "scheduleRunDays": "[parameters('scheduleRunDays')]",
-            "scheduleRunTimes": "[parameters('scheduleRunTimes')]",
-            "schedulePolicyType": "SimpleSchedulePolicy"
-          },
-          "retentionPolicy": {
-            "dailySchedule": null,
-            "weeklySchedule": {
-              "daysOfTheWeek": "[parameters('scheduleRunDays')]",
-              "retentionTimes": "[parameters('scheduleRunTimes')]",
-              "retentionDuration": {
-                "count": "[parameters('weeklyRetentionDurationCount')]",
-                "durationType": "Weeks"
-              }
+            "backupManagementType": "AzureIaasVM",
+            "schedulePolicy": {
+              "scheduleRunFrequency": "Daily",
+              "scheduleRunDays": null,
+              "scheduleRunTimes": "[parameters('scheduleRunTimes')]",
+              "schedulePolicyType": "SimpleSchedulePolicy"
             },
-            "monthlySchedule": {
-              "retentionScheduleFormatType": "Weekly",
-              "retentionScheduleDaily": {
-                "daysOfTheMonth": [
-                  {
-                    "date": 1,
-                    "isLast": false
-                  }
-                ]
+            "retentionPolicy": {
+              "dailySchedule": {
+                "retentionTimes": "[parameters('scheduleRunTimes')]",
+                "retentionDuration": {
+                    "count": "[parameters('dailyRetentionDurationCount')]",
+                    "durationType": "Days"
+                }
               },
-              "retentionScheduleWeekly": {
-                "daysOfTheWeek": "[parameters('daysOfTheWeekForMontlyRetention')]",
-                "weeksOfTheMonth": "[parameters('weeksOfTheMonthForMonthlyRetention')]"
+              "weeklySchedule": {
+                "daysOfTheWeek": "[parameters('daysOfTheWeek')]",
+                "retentionTimes": "[parameters('scheduleRunTimes')]",
+                "retentionDuration": {
+                  "count": "[parameters('weeklyRetentionDurationCount')]",
+                  "durationType": "Weeks"
+                }
               },
-              "retentionTimes": "[parameters('scheduleRunTimes')]",
-              "retentionDuration": {
-                "count": "[parameters('monthlyRetentionDurationCount')]",
-                "durationType": "Months"
-              }
+              "monthlySchedule": {
+                "retentionScheduleFormatType": "Daily",
+                "retentionScheduleDaily": {
+                  "daysOfTheMonth": [
+                    {
+                      "date": 1,
+                      "isLast": false
+                    }
+                  ]
+                },
+                "retentionScheduleWeekly": null,
+                "retentionTimes": "[parameters('scheduleRunTimes')]",
+                "retentionDuration": {
+                  "count": "[parameters('monthlyRetentionDurationCount')]",
+                  "durationType": "Months"
+                }
+              },
+              "yearlySchedule": {
+                "retentionScheduleFormatType": "Daily",
+                "monthsOfYear": "[parameters('monthsOfYear')]",
+                "retentionScheduleDaily": {
+                  "daysOfTheMonth": [
+                    {
+                      "date": 1,
+                      "isLast": false
+                    }
+                  ]
+                },
+                "retentionScheduleWeekly": null,
+                "retentionTimes": "[parameters('scheduleRunTimes')]",
+                "retentionDuration": {
+                  "count": "[parameters('yearlyRetentionDurationCount')]",
+                  "durationType": "Years"
+                }
+              },
+              "retentionPolicyType": "LongTermRetentionPolicy"
             },
-            "yearlySchedule": {
-              "retentionScheduleFormatType": "Weekly",
-              "monthsOfYear": "[parameters('monthsOfYear')]",
-              "retentionScheduleDaily": {
-                "daysOfTheMonth": [
-                  {
-                    "date": 1,
-                    "isLast": false
-                  }
-                ]
-              },
-              "retentionScheduleWeekly": {
-                "daysOfTheWeek": "[parameters('daysOfTheWeekForYearlyRetention')]",
-                "weeksOfTheMonth": "[parameters('weeksOfTheMonthForYearlyRetention')]"
-              },
-              "retentionTimes": "[parameters('scheduleRunTimes')]",
-              "retentionDuration": {
-                "count": "[parameters('yearlyRetentionDurationCount')]",
-                "durationType": "Years"
-              }
-            },
-            "retentionPolicyType": "LongTermRetentionPolicy"
-          },
-          "timeZone": "[parameters('timeZone')]"
+            "timeZone": "[parameters('timeZone')]"
+          }
         }
-      }
     ]
   }
   
