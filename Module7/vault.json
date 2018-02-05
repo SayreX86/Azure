@@ -14,6 +14,12 @@
             "description": "Name of the Backup Policy"
         }
     },
+    "scheduleRunDays": {
+        "type": "array",
+        "metadata": {
+            "description": "Backup Schedule will run on array of Days like, Monday, Tuesday etc. Applies in Weekly Backup Type only."
+        }
+    },
     "scheduleRunTimes": {
         "type": "array",
         "metadata": {
