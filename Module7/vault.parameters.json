@@ -34,6 +34,9 @@
       },
       "vmName": {
         "value": "VM2"
+      },
+      "rgName": {
+        "value": "RG3"
       }
     }
   }

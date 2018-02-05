@@ -67,12 +67,18 @@
             "metadata": {
                 "description": "Azure virtual machine name"
             }
+        },
+        "rgName": {
+            "type": "string",
+            "metadata": {
+                "description": "Azure virtual machine name"
+            }
         }
     },
     "variables": {
         "backupFabric": "Azure",
-        "protectionContainer": "[concat('iaasvmcontainer;iaasvmcontainerv2;', resourceGroup().name, ';', parameters('vmName'))]",
-        "protectedItem": "[concat('vm;iaasvmcontainerv2;', resourceGroup().name, ';', parameters('vmName'))]"    
+        "protectionContainer": "[concat('iaasvmcontainer;iaasvmcontainerv2;', parameters('rgName'), ';', parameters('vmName'))]",
+        "protectedItem": "[concat('vm;iaasvmcontainerv2;', parameters('rgName'), ';', parameters('vmName'))]"    
     },
     "resources": [
       {
