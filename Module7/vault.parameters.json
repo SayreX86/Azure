@@ -32,10 +32,7 @@
       "yearlyRetentionDurationCount": {
           "value": 10
       },
-      "existingVirtualMachinesResourceGroup": {
-        "value": "RG3"
-      },
-      "existingVirtualMachines": {
+      "vmName": {
         "value": "VM2"
       }
     }
