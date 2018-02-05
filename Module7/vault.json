@@ -69,9 +69,9 @@
             }
         },
         "existingVirtualMachines": {
-            "type": "array",
+            "type": "string",
             "metadata": {
-                "description": "Array of Azure virtual machines. e.g. [\"vm1\",\"vm2\",\"vm3\"]"
+                "description": "Azure virtual machine name"
             }
         }
     },
