@@ -12,7 +12,7 @@
           "value": [ "2018-02-05T08:00:00Z" ]
       },
       "timeZone": {
-          "value": "UTC+3"
+          "value": "UTC+03:00"
       },
       "dailyRetentionDurationCount": {
           "value": 104
