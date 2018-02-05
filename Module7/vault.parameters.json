@@ -32,11 +32,17 @@
       "yearlyRetentionDurationCount": {
           "value": 10
       },
-      "vmName": {
-        "value": "VM2"
-      },
-      "rgName": {
+      "existingVirtualMachinesResourceGroup": {
         "value": "RG3"
+      },
+      "existingVirtualMachines": {
+        "value": ["VM1"]
+      },
+      "existingRecoveryServicesVault": {
+        "value": "RecoveryVault"
+      },
+      "existingBackupPolicy": {
+        "value": "DailyBackupPolicy"
       }
     }
   }
