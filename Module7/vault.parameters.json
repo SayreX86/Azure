@@ -1,37 +1,7 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-      "vaultName": {
-        "value": "RecoveryVault"
-      },
-      "policyName": {
-          "value": "DailyBackupPolicy"
-      },
-      "scheduleRunTimes": {
-          "value": [ "2018-02-05T08:00:00Z" ]
-      },
-      "timeZone": {
-          "value": "UTC"
-      },
-      "dailyRetentionDurationCount": {
-          "value": 104
-      },
-      "daysOfTheWeek": {
-          "value": [ "Sunday", "Tuesday", "Thursday" ]
-      },
-      "weeklyRetentionDurationCount": {
-          "value": 104
-      },
-      "monthlyRetentionDurationCount": {
-          "value": 60
-      },
-      "monthsOfYear": {
-          "value": [ "January", "March", "August" ]
-      },
-      "yearlyRetentionDurationCount": {
-          "value": 10
-      },
       "existingVirtualMachinesResourceGroup": {
         "value": "RG3"
       },
@@ -39,10 +9,10 @@
         "value": ["VM2"]
       },
       "existingRecoveryServicesVault": {
-        "value": "RecoveryVault"
+        "value": "RecoveryServicesVault"
       },
       "existingBackupPolicy": {
-        "value": "DailyBackupPolicy"
+        "value": "DefaultPolicy"
       }
     }
-  }
+  }  
