@@ -6,7 +6,7 @@
             "value": "RecoveryServicesVault"
         },
         "policyName": {
-             "value": "DailyBackupPolicy"
+             "value": "MyBackupPolicy"
         },
         "scheduleRunTimes": {
             "value": [ "2018-02-05T08:00:00Z" ]
