@@ -4,3 +4,12 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName $RG `
 -TemplateUri 'https://raw.githubusercontent.com/SayreX86/Azure/master/Module7/vault.json' `
 -TemplateParameterUri 'https://raw.githubusercontent.com/SayreX86/Azure/master/Module7/vault.parameters.json' `
 -Force -Verbose
+
+$backupsacheck = Get-AzureRmStorageAccount | Where-Object {$_.StorageAccountName -eq 'backupsatraining'}
+if ($backupsacheck -eq $null) {
+    Write-Host "Creating backupsatraining storage account..." -BackgroundColor DarkCyan
+    New-AzureRmStorageAccount -ResourceGroupName $RG -Name 'backupsatraining' -SkuName Standard_LRS -Location westeurope
+}
+else {
+    Write-Host "Storage account backupsa already exist!" -BackgroundColor DarkCyan
+}
