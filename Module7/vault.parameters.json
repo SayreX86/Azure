@@ -36,7 +36,7 @@
         "value": "RG3"
       },
       "existingVirtualMachines": {
-        "value": ["VM1"]
+        "value": ["VM2"]
       },
       "existingRecoveryServicesVault": {
         "value": "RecoveryVault"
