@@ -6,7 +6,6 @@ Login-AzureRmAccount
 
 $s = Get-AzureRmSubscription | Out-GridView -PassThru -Title "Select subscription"
 Set-AzureRmContext -SubscriptionId $s.SubscriptionId
-New-AzureRmResourceGroup -Name $RG2 -Location $Location -Force -Verbose
 
 #Set AzureRecoveryService Context
 Get-AzureRmRecoveryServicesVault -Name 'RecoveryServicesVault' | Set-AzureRmRecoveryServicesVaultContext
